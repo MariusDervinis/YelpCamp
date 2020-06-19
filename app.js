@@ -1,6 +1,3 @@
-//requiring environment variables with dotenv
-	require('dotenv').config();
-
 var express = require("express"),
  	app = express(),
  	bodyParser = require("body-parser"),
@@ -9,8 +6,11 @@ var express = require("express"),
 	LocalStrategy = require("passport-local"),
 	methodOverride = require("method-override"),
 	flash = require("connect-flash"),
-	
-	seedDB = require("./seeds"),
+
+//seed database removing existing data
+	// seedDB = require("./seeds"),
+
+//requiring models
 	Comment = require("./models/comment"),
 	Campground = require("./models/campground"),
 	User = require("./models/user");
@@ -19,13 +19,18 @@ var express = require("express"),
 var commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
-	
+
+//requiring environment variables with dotenv
+require('dotenv').config();
+
 //Seeding the database to work with
 //WARNING: IT WILL DELETE AND REPLACE WITH DUMMY DATA EVERYTIME APP RESTARTS!!
 //seedDB();
+//will remove in a future, models changed to use seeedDB
 
 app.set("view engine", "ejs");
 
+//mongoDB connection
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true,useFindAndModify: false});
 
 app.use(bodyParser.urlencoded({extended:true}));
