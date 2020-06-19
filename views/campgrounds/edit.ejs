@@ -3,23 +3,27 @@
 <div class="container">
 	<div class="row">
 <h1 style="text-align: center">
+	<span class="glyphicon glyphicon-pencil"></span>
 	Edit <%= campground.name %>
 </h1>
 	<div style="width: 30% ; margin: 35px auto;">
 
-<form action="/campgrounds/<%= campground._id %>?_method=PUT" METHOD="POST">
+<form action="/campgrounds/<%= campground._id %>?_method=PUT" METHOD="POST" enctype="multipart/form-data">
 <div class="form-group">
-	<input class="form-control" type="text" name="campground[name]" value="<%= campground.name %>" minlength="6" required>
+	<input class="form-control" type="text" name="name" value="<%= campground.name %>" minlength="6" required>
 		</div>
 	<div class="form-group">
-	<input class="form-control" type="number" name="campground[price]" value="<%= campground.price %>" min="0.00" step="0.01" required>
+	<input class="form-control" type="number" name="price" value="<%= campground.price %>" min="0.00" step="0.01" required>
 		</div>
 	<div class="form-group">
-	<input class="form-control" type="text" name="campground[image]" value="<%= campground.image %>" minlength="6" required>
+		<label for="image">Image</label>
+		
+		<img src="<%= campground.image %>" class="img-thumbnail"  alt="">
+		<input type="file" id="image" name="image" accept="image/*">
 			</div>
 	<div class="form-group">
-	<input class="form-control" type="text" name="campground[description]" value="<%= campground.description %>" minlength="6" required>
-			</div>
+	<textarea rows="5" class="form-control" type="text" name="description" minlength="6" required><%= campground.description %></textarea>
+</div>
 	<button class="btn btn-lg btn-primary btn-block">
 		SUBMIT
 	</button>

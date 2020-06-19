@@ -13,3 +13,9 @@
 .delete-form {
 	display: inline;
 }
+
+textarea {
+	resize: vertical;
+	min-height: 50px;
+	max-height: 200px;
+}
